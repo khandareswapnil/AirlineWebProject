@@ -1,0 +1,82 @@
+.auth-container {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+  }
+  
+  .auth-box {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+  
+  .login-section,
+  .register-section {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .login-section {
+    background: #f8f9fa;
+    border-right: 2px solid #dee2e6;
+  }
+  
+  .register-section {
+    background: #ffffff;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  .form-control {
+    border-radius: 5px;
+  }
+  
+  .btn {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .btn-primary {
+    background: #007bff;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background: #0056b3;
+  }
+  
+  .btn-secondary {
+    background: #28a745;
+    border: none;
+  }
+  
+  .btn-secondary:hover {
+    background: #218838;
+  }
+  
+  
+  .input-height {
+    height: 40px; /* Ensure the input height is fixed */
+  }
+  
+  .button-height {
+    height: 40px; /* Match the button height with input */
+    padding: 0 16px; /* Adjust padding for better alignment */
+    margin-bottom: 10px;
+  }
+  
+  .auth-box {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  

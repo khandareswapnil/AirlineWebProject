@@ -1,0 +1,7 @@
+
+.nav-hover:hover {
+    color: #FFD700 !important; /* Light Gold for contrast */
+    text-decoration: underline;
+    transition: color 0.3s ease-in-out;
+  }
+  
