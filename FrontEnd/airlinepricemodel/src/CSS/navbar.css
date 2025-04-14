@@ -1,7 +1,10 @@
-
 .nav-hover:hover {
-    color: #FFD700 !important; /* Light Gold for contrast */
-    text-decoration: underline;
-    transition: color 0.3s ease-in-out;
-  }
-  
+  color: #FFD700 !important;
+  text-decoration: underline;
+  transition: color 0.3s ease-in-out;
+
+}
+
+.header{
+  background: linear-gradient(to bottom right, #1e3c72, #2a5298);
+}

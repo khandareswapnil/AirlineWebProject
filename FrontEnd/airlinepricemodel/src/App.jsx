@@ -1,27 +1,39 @@
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-import './App.css'
-import { Home } from './Component/Home'
-import { Login } from './Component/Login'
-import {About} from './Component/About'
-import {Services} from './Component/Services'
-import {Contact} from './Component/contact'
-import { BrowserRouter,Routes,Route } from 'react-router'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Home } from './Component/Home';
+import { Login } from './Component/Login';
+import { About } from './Component/About';
+import AdminDashboard from './Component/Admin/AdminDashboard';
+import ViewUser from './Component/Admin/ViewUser';
+import AddFlights from './Component/Admin/AddFlights';
+import ViewFlights from './Component/Admin/ViewFlights';
+import ViewBookings from './Component/Admin/VIewBooking';
+import { Contact } from './Component/contact';
+
 function App() {
-  
-
   return (
-    <>
-       <BrowserRouter>  {/* Wrap everything inside BrowserRouter */}
+    <BrowserRouter>
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+
+        {/* Admin Dashboard with nested routes */}
+        <Route path="/admin" element={<AdminDashboard />}>
+          <Route index element={<h2>Welcome to Admin Dashboard</h2>} />
+          <Route path="users" element={<ViewUser />} />
+          <Route path="bookings" element={<ViewBookings />} />
+          <Route path="addflights" element={<AddFlights />} />
+          <Route path="view-schedule" element={<ViewFlights />} />
+        </Route>
       </Routes>
     </BrowserRouter>
-    </>
-  )
+  );
 }
 
-export default App
+export default App;
