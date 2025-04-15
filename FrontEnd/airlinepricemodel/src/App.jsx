@@ -8,7 +8,7 @@ import { Login } from './Component/Login';
 import { About } from './Component/About';
 import AdminDashboard from './Component/Admin/AdminDashboard';
 import ViewUser from './Component/Admin/ViewUser';
-import AddFlights from './Component/Admin/AddFlights';
+import AddFlightSchedule from './Component/Admin/AddFlightSchedule';
 import ViewFlights from './Component/Admin/ViewFlights';
 import ViewBookings from './Component/Admin/VIewBooking';
 import { Contact } from './Component/contact';
@@ -28,7 +28,7 @@ function App() {
           <Route index element={<h2>Welcome to Admin Dashboard</h2>} />
           <Route path="users" element={<ViewUser />} />
           <Route path="bookings" element={<ViewBookings />} />
-          <Route path="addflights" element={<AddFlights />} />
+          <Route path="addflights" element={<AddFlightSchedule />} />
           <Route path="view-schedule" element={<ViewFlights />} />
         </Route>
       </Routes>
