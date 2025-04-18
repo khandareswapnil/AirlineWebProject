@@ -1,0 +1,19 @@
+/* ViewUsers.css */
+
+.center-box {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f6; /* Light Gray Background */
+  }
+  
+  .card-box {
+    width: 90%;
+    max-width: 1100px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  

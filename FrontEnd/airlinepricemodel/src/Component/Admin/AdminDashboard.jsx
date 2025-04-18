@@ -4,16 +4,37 @@ import { Outlet } from 'react-router-dom';
 
 const AdminDashboard = () => {
   return (
-    <div className="d-flex" style={{ minHeight: '100vh' }}>
-      {/* Sidebar - 25% */}
-      <div style={{ width: '25%' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', overflow: 'hidden' }}>
+      
+      {/* Sidebar - Fixed */}
+      <div
+        style={{
+          width: '25%',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          bottom: 0,
+          backgroundColor: '#f8f9fa',
+          overflowY: 'auto',
+          borderRight: '1px solid #dee2e6',
+        }}
+      >
         <AdminNavbar />
       </div>
 
-      {/* Content Area - 75% */}
-      <div style={{ width: '75%', padding: '20px' }}>
+      {/* Content Area - Scrollable */}
+      <div
+        style={{
+          marginLeft: '25%',
+          width: '75%',
+          padding: '20px',
+          overflowY: 'auto',
+          maxHeight: '100vh',
+        }}
+      >
         <Outlet />
       </div>
+
     </div>
   );
 };

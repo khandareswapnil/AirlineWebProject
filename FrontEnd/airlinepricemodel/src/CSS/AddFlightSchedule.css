@@ -1,0 +1,37 @@
+.flight-schedule-container {
+    background-color: #f8f9fa; /* light background */
+    border-radius: 10px;
+  }
+  
+  .flight-schedule-title {
+    color: #0056b3; /* Blue Heading */
+    font-weight: bold;
+  }
+  
+  .card {
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+  }
+  
+  label {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  select.form-select {
+    border-radius: 6px;
+    padding: 8px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
