@@ -24,10 +24,7 @@ const AddFlightSchedule = () => {
   useEffect(() => {
     fetch("http://localhost:8082/viewFlights")
       .then((res) => res.json())
-      .then((data) => {
-        console.log("Fetched Flights:", data);
-        setFlights(data);
-      })
+      .then((data) => setFlights(data))
       .catch((err) => console.error("Error fetching flight data", err));
   }, []);
 
@@ -38,7 +35,6 @@ const AddFlightSchedule = () => {
       .catch((err) => console.error("Error fetching airport data", err));
   }, []);
 
-  // Filter based on selected airline
   const filteredFlights = flights.filter(
     (flight) => flight.airline_name === selectedAirline
   );
@@ -66,21 +62,59 @@ const AddFlightSchedule = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const scheduleData = {
-      selectedAirline,
-      selectedAircraft,
-      selectedFlightNumber,
-      departureCity,
-      departureAirport,
-      arrivalCity,
-      arrivalAirport,
-      departureDate,
-      departureTime,
-      arrivalDate,
-      arrivalTime,
+      airline_name: selectedAirline,
+      aircra_name: selectedAircraft,
+      fnumber: selectedFlightNumber,
+      dep_city: departureCity,
+      arr_city: arrivalCity,
+      dep_date: departureDate,
+      dep_time: departureTime,
+      arr_date: arrivalDate,
+      arr_time: arrivalTime,
+    
     };
+
     console.log("Submitted Schedule:", scheduleData);
-    // Here you can POST the data to backend if you want
+
+    fetch("http://localhost:8082/addFlightSchedule", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(scheduleData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("Flight Schedule Added Successfully ✈️");
+          // Reset form fields after success
+          resetForm();
+        } else {
+          alert("Failed to add flight schedule 😔");
+        }
+      })
+      .catch((error) => {
+        console.error("Error adding flight schedule:", error);
+        alert("Error adding flight schedule");
+      });
+  };
+
+  const resetForm = () => {
+    setSelectedAirline("");
+    setSelectedAircraft("");
+    setSelectedFlightNumber("");
+    setDepartureCity("");
+    setArrivalCity("");
+    setDepartureAirports([]);
+    setArrivalAirports([]);
+    setDepartureAirport("");
+    setArrivalAirport("");
+    setDepartureDate("");
+    setDepartureTime("");
+    setArrivalDate("");
+    setArrivalTime("");
+   
   };
 
   const filteredArrivalCities = uniqueCities.filter((city) => city !== departureCity);
@@ -93,12 +127,12 @@ const AddFlightSchedule = () => {
       <form onSubmit={handleSubmit}>
         {/* Flight Information Section */}
         <div className="card p-4 shadow-sm mb-5">
-        <div className="d-flex justify-content-between align-items-center mb-4">
-    <h3 className="text-primary">Flight Information</h3>
-    <Link to="/admin/add-flight" className="btn btn-success">
-      Add New Flight
-    </Link>
-  </div>
+          <div className="d-flex justify-content-between align-items-center mb-4">
+            <h3 className="text-primary">Flight Information</h3>
+            <Link to="/admin/add-flight" className="btn btn-success">
+              Add New Flight
+            </Link>
+          </div>
 
           {/* Airline Name */}
           <div className="row mb-3">
@@ -266,27 +300,25 @@ const AddFlightSchedule = () => {
           </div>
         </div>
 
-        {/* Date and Time Section */}
+        {/* Date, Time, and Rate Section */}
         <div className="card p-4 shadow-sm mb-5">
-          <h3 className="text-primary mb-4">Date And Time Information</h3>
+          <h3 className="text-primary mb-4">Date, Time and Price</h3>
 
           {/* Departure Date and Time */}
           <div className="row mb-4">
             <div className="col-md-6">
-              <label htmlFor="departureDate" className="form-label">Departure Date</label>
+              <label className="form-label">Departure Date</label>
               <input
                 type="date"
-                id="departureDate"
                 className="form-control"
                 value={departureDate}
                 onChange={(e) => setDepartureDate(e.target.value)}
               />
             </div>
             <div className="col-md-6">
-              <label htmlFor="departureTime" className="form-label">Departure Time</label>
+              <label className="form-label">Departure Time</label>
               <input
                 type="time"
-                id="departureTime"
                 className="form-control"
                 value={departureTime}
                 onChange={(e) => setDepartureTime(e.target.value)}
@@ -297,27 +329,26 @@ const AddFlightSchedule = () => {
           {/* Arrival Date and Time */}
           <div className="row mb-4">
             <div className="col-md-6">
-              <label htmlFor="arrivalDate" className="form-label">Arrival Date</label>
+              <label className="form-label">Arrival Date</label>
               <input
                 type="date"
-                id="arrivalDate"
                 className="form-control"
                 value={arrivalDate}
                 onChange={(e) => setArrivalDate(e.target.value)}
               />
             </div>
             <div className="col-md-6">
-              <label htmlFor="arrivalTime" className="form-label">Arrival Time</label>
+              <label className="form-label">Arrival Time</label>
               <input
                 type="time"
-                id="arrivalTime"
                 className="form-control"
                 value={arrivalTime}
                 onChange={(e) => setArrivalTime(e.target.value)}
               />
             </div>
           </div>
-        </div>
+          </div>
+        
 
         {/* Submit Button */}
         <div className="text-center">

@@ -9,7 +9,7 @@ const AdminDashboard = () => {
       {/* Sidebar - Fixed */}
       <div
         style={{
-          width: '25%',
+          width: '20%',
           position: 'fixed',
           top: 0,
           left: 0,
@@ -26,7 +26,7 @@ const AdminDashboard = () => {
       <div
         style={{
           marginLeft: '25%',
-          width: '75%',
+          width: '80%',
           padding: '20px',
           overflowY: 'auto',
           maxHeight: '100vh',

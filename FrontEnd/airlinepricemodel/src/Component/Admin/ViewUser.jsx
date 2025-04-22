@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { getAllUsers } from "../../API/Service.js";
-import 'bootstrap/dist/css/bootstrap.min.css'; //
-
-import "../../CSS/ViewUser.css"
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+import "../../CSS/ViewUser.css";
 
 const ViewUsers = () => {
   const [users, setUsers] = useState([]);
@@ -39,13 +39,77 @@ const ViewUsers = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString();
+    const fileName = `User_Report_${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}.pdf`;
+
+    const header = () => {
+      doc.setFontSize(16);
+      doc.setTextColor(40);
+      doc.text("My Airline Ticket System", pageWidth / 2, 15, { align: "center" });
+
+      doc.setFontSize(12);
+      doc.text("User Report", pageWidth / 2, 23, { align: "center" });
+
+      // Add date at top right
+      doc.setFontSize(10);
+      doc.text(`Date: ${formattedDate}`, pageWidth - 20, 10, { align: "right" });
+    };
+
+    const footer = (data) => {
+      const str = "Page " + data.pageCount;
+      doc.setFontSize(10);
+      doc.text(str, data.settings.margin.left, pageHeight - 10);
+    };
+
+    const tableColumn = ["UID", "Name", "Email", "Contact", "Gender", "Role"];
+    const tableRows = users.map((user) => [
+      user.uid,
+      user.name,
+      user.email,
+      user.contact,
+      user.gender,
+      user.role,
+    ]);
+
+    autoTable(doc, {
+      head: [tableColumn],
+      body: tableRows,
+      startY: 30,
+      margin: { top: 30 },
+      didDrawPage: (data) => {
+        header();
+        footer(data);
+      },
+      styles: {
+        fontSize: 10,
+        cellPadding: 3,
+      },
+      headStyles: {
+        fillColor: [0, 123, 255], // Bootstrap primary color
+        textColor: 255,
+      },
+    });
+
+    doc.save(fileName);
+  };
+
   return (
     <div className="center-box">
       <div className="card-box">
-
-        <h2 className="text-center mb-4" style={{ color: "#333" }}>
-          All Users
-        </h2>
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h2 className="text-center mb-0" style={{ color: "#333" }}>
+            All Users
+          </h2>
+          <button className="btn btn-success" onClick={downloadPDF}>
+            Download PDF
+          </button>
+        </div>
 
         <div className="table-responsive">
           <table className="table table-bordered table-hover">
@@ -112,7 +176,6 @@ const ViewUsers = () => {
             Next
           </button>
         </div>
-
       </div>
     </div>
   );

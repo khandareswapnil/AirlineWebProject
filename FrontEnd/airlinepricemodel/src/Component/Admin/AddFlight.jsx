@@ -61,7 +61,7 @@ const AddFlight = () => {
           <div className="row mb-3">
             <div className="col-md-4">
               <label htmlFor="fnumber" className="form-label">
-                Flight Number
+                Aircraft Type
               </label>
             </div>
             <div className="col-md-8">
@@ -82,7 +82,7 @@ const AddFlight = () => {
           <div className="row mb-4">
             <div className="col-md-4">
               <label htmlFor="ftype" className="form-label">
-                Aircraft Type
+                Flight Number
               </label>
             </div>
             <div className="col-md-8">

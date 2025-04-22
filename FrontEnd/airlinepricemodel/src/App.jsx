@@ -9,11 +9,11 @@ import { About } from './Component/About';
 import AdminDashboard from './Component/Admin/AdminDashboard';
 import ViewUser from './Component/Admin/ViewUser';
 import AddFlightSchedule from './Component/Admin/AddFlightSchedule';
-import ViewFlights from './Component/Admin/ViewFlights';
 import ViewBookings from './Component/Admin/VIewBookings'; // correct the typo: VIewBooking -> ViewBookings
 import { Contact } from './Component/Contact'; // correct 'contact' -> 'Contact'
 import AddFlight from './Component/Admin/AddFlight';
 import AddAirport from './Component/Admin/AddAirport';
+import ViewFlightSchedules from './Component/Admin/ViewFlightSchedule';
 
 function App() {
   return (
@@ -36,7 +36,7 @@ function App() {
           <Route path="addflights" element={<AddFlightSchedule />} />
           <Route path="add-flight" element={<AddFlight />} />
           <Route path="add-airport" element={<AddAirport />} />
-          <Route path="view-schedule" element={<ViewFlights />} />
+          <Route path="view-schedule" element={<ViewFlightSchedules />} />
         </Route>
       </Routes>
     </BrowserRouter>
